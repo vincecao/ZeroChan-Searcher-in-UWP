@@ -1,0 +1,224 @@
+﻿<Page
+    x:Class="ZC.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ZC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#FF404040">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="0"
+                    Height="35">
+            <Button x:Name="ToggleBtn"
+                    Click="Togglebutton_Click"
+                    Foreground="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                    FontFamily="Segoe MDL2 Assets"
+                    Height="35"
+                    Width="48"
+                    Content="&#xE700;"
+                    FontSize="20"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"/>
+
+            <TextBlock Name="headerTitle"
+                       Foreground="White"
+                       Text="ZeroChan" 
+                       FontSize="16" 
+                       Margin="5" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Stretch"/>
+
+        </StackPanel>
+
+
+        <SplitView x:Name="Splitter"
+                   IsPaneOpen="True"
+                   Grid.Row="1" 
+                   DisplayMode="CompactOverlay" 
+                   OpenPaneLength="150" 
+                   CompactPaneLength="48" 
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch" 
+                   PaneClosed="Splitter_PaneClosed">
+
+            <SplitView.Pane>
+                <Grid x:Name="SpliPane" 
+                      Background="{ThemeResource SystemControlHighlightAccentBrush}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel>
+                        <!--<StackPanel x:Name="Ad" 
+                                        RelativePanel.Below="oneWord" 
+                                        RelativePanel.Above="FooterPanel" 
+                                        VerticalAlignment="Center" 
+                                        HorizontalAlignment="Center" 
+                                        RelativePanel.AlignHorizontalCenterWithPanel="True">
+                        <UI:AdControl ApplicationId="ee6ce328-6fc1-42b7-bab2-a215c59ba2e4"
+                                 AdUnitId="11665695"
+                                 HorizontalAlignment="Center"
+                                 Height="250"
+                                 VerticalAlignment="Center"
+                                 Width="300" Margin="0" />
+                    </StackPanel>-->
+
+                        <ListBox SelectionMode="Single" 
+                                 Name="IconsListBox" 
+                                 SelectionChanged="IconsListBox_SelectionChanged"
+                                 Background="{ThemeResource SystemControlHighlightAccentBrush}"
+                                 Foreground="White">
+
+                            <ListBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" 
+                                       Text="&#xE128;" 
+                                       FontSize="25" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Zerochan" 
+                                       FontSize="20" 
+                                       Margin="15,0,0,0" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </ListBoxItem>
+
+                            <ListBoxItem Name="FavorListBoxItem" Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" 
+                                       Text="&#xE208;" 
+                                       FontSize="25" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Favorite" 
+                                       FontSize="20" 
+                                       Margin="15,0,0,0" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </ListBoxItem>
+
+                            <ListBoxItem Name="SettingListBoxItem" Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" 
+                                               Text="&#xE713;" 
+                                               FontSize="25" 
+                                               VerticalAlignment="Center" 
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Setting" 
+                                               FontSize="20" 
+                                               Margin="15,0,0,0" 
+                                               VerticalAlignment="Center" 
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </ListBoxItem>
+
+                        </ListBox>
+
+                    </StackPanel>
+
+                    <ListBox SelectionMode="Single" 
+                             Name="buyMeCoffee" 
+                             SelectionChanged="IconsListBox_SelectionChanged"
+                             Background="{ThemeResource SystemControlBackgroundAccentBrush}"
+                             Foreground="White"
+                             Grid.Row="2">
+                        <ListBoxItem Name="buyMeCoffeeItem">
+                            <HyperlinkButton NavigateUri="https://vincecao.github.io/2017/01/07/Zerochan-anime-searcher-UWP/"
+                                             Background="Transparent"
+                                             Foreground="white">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" 
+                                               Text="&#xED56;" 
+                                               FontSize="25" 
+                                               VerticalAlignment="Center" 
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Like it?" 
+                                               FontSize="20" 
+                                               Margin="15,0,0,0" 
+                                               VerticalAlignment="Center" 
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </HyperlinkButton>
+                        </ListBoxItem>
+
+                    </ListBox>
+
+                    <TextBlock Visibility="Collapsed" x:Name="oneWord"
+                               Text="宅，是一种生活状态；死宅，是一种人生境界…" 
+                               Width="auto"
+                               Margin="15"
+                               TextWrapping="WrapWholeWords"
+                               RelativePanel.AlignHorizontalCenterWithPanel="True" 
+                               Foreground="White" 
+                               FontSize="12" 
+                               RelativePanel.AlignTopWithPanel="True" 
+                               Grid.Row="3"
+                               VerticalAlignment="Top"/>
+
+                    <StackPanel Background="{ThemeResource TextBoxPlaceholderTextThemeBrush}" 
+                                x:Name="FooterPanel"
+                                Orientation="Horizontal" 
+                                RelativePanel.AlignBottomWithPanel="True" 
+                                BorderThickness="0,0,0,0" 
+                                Margin="0,0,0,0" 
+                                RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                Grid.Row="4">
+                        <StackPanel Width="150">
+                            <HyperlinkButton x:Name="ZerochanUrl" 
+                                             NavigateUri="http://zerochan.net/">
+                                <TextBlock x:Name="Statement" 
+                                           Text="Images are auto-generated by the code, 
+                                                they are copyrighted and owned by the original author and Zerochan website. Please contact us if damage to your profits." 
+                                           TextWrapping="Wrap" 
+                                           RelativePanel.AlignLeftWith="FooterPanel"
+                                           Foreground="#CCFFFFFF" 
+                                           Margin="5" 
+                                           Width="auto" 
+                                           FontStyle="Italic" 
+                                           TextAlignment="DetectFromContent" 
+                                           FontSize="8"/>
+                            </HyperlinkButton>
+
+                            <HyperlinkButton x:Name="Copyright" 
+                                             NavigateUri="https://kulucolo.github.io/"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center">
+
+                                <TextBlock 
+                                    Text="© 红有三 · 工作室. 
+                                            由 KuluColo 强力支持" 
+                                    TextWrapping="Wrap" 
+                                    Foreground="#F2FFFFFF" 
+                                    Margin="0" Width="auto" 
+                                    TextAlignment="DetectFromContent" 
+                                    FontWeight="Bold"
+                                    FontSize="11"
+                                    />
+                            </HyperlinkButton>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </SplitView.Pane>
+
+            <SplitView.Content>
+                <Grid>
+                    <Frame Name="myFrame" />
+                </Grid>
+            </SplitView.Content>
+            
+        </SplitView>
+    </Grid>
+</Page>

@@ -1,0 +1,6 @@
+MainPackage=C:\Users\qq234\Documents\Visual Studio 2017\Projects\ZC\ZC\bin\ARM\Release\Upload\ZC_1.5.2.0_ARM.appx
+SymbolPackage=C:\Users\qq234\Documents\Visual Studio 2017\Projects\ZC\ZC\bin\ARM\Release\Upload\ZC_1.5.2.0\ZC_1.5.2.0_ARM.appxsym
+ResourcePack=C:\Users\qq234\Documents\Visual Studio 2017\Projects\ZC\ZC\_scale-100.appx
+ResourcePack=C:\Users\qq234\Documents\Visual Studio 2017\Projects\ZC\ZC\_scale-125.appx
+ResourcePack=C:\Users\qq234\Documents\Visual Studio 2017\Projects\ZC\ZC\_scale-150.appx
+ResourcePack=C:\Users\qq234\Documents\Visual Studio 2017\Projects\ZC\ZC\_scale-400.appx

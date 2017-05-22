@@ -1,0 +1,343 @@
+﻿<Page
+    x:Class="ZC.Zerochan_IndexPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ZC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+
+        <RelativePanel>
+            <Grid x:Name="DisplayImagePack"
+                  RelativePanel.AlignLeftWithPanel="True" 
+                  RelativePanel.AlignRightWithPanel="True" 
+                  RelativePanel.AlignTopWithPanel="True"
+                  RelativePanel.AlignBottomWithPanel="True"
+                  VerticalAlignment="Center" 
+                  HorizontalAlignment="Center"
+                  ManipulationMode="System,TranslateX"
+                  ManipulationDelta="Img_ManipulationDelta">
+                <Image x:Name="SmallDisplayImage" 
+                       Tapped="DisplayImage_Tapped"/>
+                <Image x:Name="MiddleDisplayImage" 
+                       Tapped="DisplayImage_Tapped"/>
+                <Image x:Name="LargeDisplayImage" 
+                       Tapped="DisplayImage_Tapped"/>
+            </Grid>
+
+            <ScrollViewer  x:Name="FullScreenScrollViewer"
+                           RelativePanel.AlignLeftWithPanel="True" 
+                           RelativePanel.AlignRightWithPanel="True" 
+                           RelativePanel.AlignTopWithPanel="True"
+                           RelativePanel.AlignBottomWithPanel="True"
+                           Visibility="Collapsed"
+                           MinZoomFactor="0.7" 
+                           MaxZoomFactor="2" 
+                           ZoomMode="Enabled"
+                           VerticalScrollBarVisibility="Auto" 
+                           HorizontalScrollBarVisibility="Auto" 
+                           DoubleTapped="FullScreenScrollViewer_DoubleTapped">
+                <Grid>
+                    <TextBlock Text="Loading..." 
+                                   Style="{StaticResource SubheaderTextBlockStyle}" 
+                                   Foreground="White" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Center"/>
+                    <Image x:Name="FullScreenDisplayImage"/>
+                </Grid>
+
+            </ScrollViewer>
+
+        </RelativePanel>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+
+            <Grid x:Name="TopBarPanel" 
+              Opacity="0.6"
+              Background="{ThemeResource SystemControlBackgroundAccentBrush}" VerticalAlignment="Top">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal"
+                        Grid.Column="0">
+                    <ComboBox x:Name="sortCb" 
+                          Background="{x:Null}"
+                          Foreground="White"
+                          BorderBrush="{x:Null}"
+                          BorderThickness="0"
+                          FontSize="15"                       
+                          Padding="10" 
+                          FontStyle="Italic" 
+                          SelectedIndex="0"
+                          VerticalAlignment="Stretch"
+                          HorizontalAlignment="Stretch">
+                        <ComboBoxItem Content="Recent"/>
+                        <ComboBoxItem Content="Popular"/>
+                        <ComboBoxItem Content="Random"/>
+                    </ComboBox>
+
+                    <ComboBox x:Name="qualityCb" 
+                          Background="{x:Null}"
+                          Foreground="White"
+                          BorderBrush="{x:Null}"
+                          BorderThickness="0"
+                          FontSize="15"                       
+                          Padding="10" 
+                          FontStyle="Italic" 
+                          SelectedIndex="0"
+                          VerticalAlignment="Stretch"
+                          HorizontalAlignment="Stretch">
+                        <ComboBoxItem Content="All Size"/>
+                        <ComboBoxItem Content="Large and better"/>
+                        <ComboBoxItem Content="Only very Large"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <RelativePanel Grid.Column="1">
+                    <TextBox x:Name="searchTextBox"
+                         Opacity="0.5"
+                         Background="white"
+                         Margin="0"
+                         Padding="10"
+                         BorderThickness="0"
+                         TextWrapping="Wrap" 
+                         FontSize="20" 
+                         KeyUp="searchTextBox_KeyUp"
+                         RelativePanel.LeftOf="zerochan_btn"
+                         RelativePanel.AlignLeftWithPanel="True"
+                         VerticalAlignment="Stretch"
+                         HorizontalAlignment="Stretch"/>
+
+                    <Button x:Name="zerochan_btn"
+                        Content="ZERO!"
+                        Background="#33000000"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"  
+                        Padding="10" 
+                        BorderThickness="0"                    
+                        Foreground="White" 
+                        FontSize="15"
+                        FontWeight="ExtraBlack"                    
+                        Click="zerochan_btn_Click"
+                        RelativePanel.AlignRightWithPanel="True"
+                        RelativePanel.AlignBottomWithPanel="True"
+                        RelativePanel.AlignTopWithPanel="True"/>
+                </RelativePanel>
+
+                <Button x:Name="DownloadBtn" 
+                    Content="Download" 
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"  
+                    Background="{x:Null}"
+                    Padding="10" 
+                    BorderThickness="0"                    
+                    Foreground="White" 
+                    FontSize="15" 
+                    Click="DownloadBtn_Click"
+                    Grid.Column="2">
+
+                </Button>
+            </Grid>
+
+            <RelativePanel Grid.Row="1">
+
+                <Grid RelativePanel.AlignBottomWithPanel="True" 
+                  RelativePanel.AlignTopWithPanel="True"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="backBtn"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Visibility="Collapsed"
+                            HorizontalAlignment="left" 
+                            VerticalAlignment="Top" 
+                            Margin="0,0,0,0" 
+                            Content="Back" 
+                            Foreground="#B2FFFFFF" 
+                            FontSize="13" 
+                            FontWeight="Bold" 
+                            Click="backBtn_Click" 
+                            BorderThickness="0" 
+                            Width="50" 
+                            Height="31" 
+                            Background="#FFF98D2E"/>
+
+                    <Button x:Name="prevBtn"
+                        Visibility="Collapsed"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
+                        Margin="0,0,0,0" 
+                        Content="Previous" 
+                        Foreground="#B2FFFFFF" 
+                        FontSize="13" 
+                        FontWeight="Bold" 
+                        Click="prevBtn_Click" 
+                        BorderThickness="0"                             
+                        RelativePanel.AlignLeftWithPanel="True"
+                        Width="50" 
+                        Height="31" Background="#FF3050FF"/>
+
+                    <Button x:Name="nextBtn"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Visibility="Visible"
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center" 
+                                Margin="0,0,0,0" 
+                                Content="Next" 
+                                Foreground="#B2FFFFFF" 
+                                FontSize="13" 
+                                FontWeight="Bold" 
+                                Click="nextBtn_Click" 
+                                BorderThickness="0"                             
+                                RelativePanel.AlignLeftWithPanel="True"
+                                Width="50" 
+                                Height="31" Background="#FF3050FF"/>
+
+                    <Button x:Name="InfoSwitch" 
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Bottom" 
+                                Background="#7FB0A9A9" 
+                                Content="Info" 
+                                Foreground="#B2FFFFFF" 
+                                FontSize="13" 
+                                FontWeight="Bold" 
+                                Click="InfoSwitch_Click" 
+                                BorderThickness="0" 
+                                RelativePanel.AlignLeftWithPanel="True" 
+                                Width="50" 
+                                Height="31"/>
+
+                </Grid>
+
+                <SplitView x:Name="InfoSplit" 
+                       Width="320" 
+                       RelativePanel.AlignTopWithPanel="True" 
+                       RelativePanel.AlignLeftWithPanel="True"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       PaneBackground="#E5FFFFFF"
+                       Opacity="0.75">
+                    <SplitView.Pane >
+                        <RelativePanel x:Name="InfoPanel">
+                            <HyperlinkButton x:Name="urlBlock" 
+                                         Content="Source link: " 
+                                         RelativePanel.AlignTopWithPanel="True" 
+                                         RelativePanel.AlignLeftWithPanel="True" 
+                                         RelativePanel.AlignRightWithPanel="True" 
+                                         Foreground="Black" 
+                                         FontSize="15" 
+                                         HorizontalAlignment="Left" 
+                                         VerticalAlignment="Bottom" 
+                                         Margin="5,0,0,0" 
+                                         FontStyle="Italic"/>
+
+                            <TextBlock x:Name="textBlock" 
+                                   TextWrapping="Wrap" 
+                                   Text="TAGS" 
+                                   RelativePanel.Below="urlBlock" 
+                                   RelativePanel.AlignLeftWithPanel="True" 
+                                   RelativePanel.AlignRightWithPanel="True" 
+                                   Foreground="Black" 
+                                   FontSize="35" 
+                                   FontWeight="Bold" 
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" 
+                                   Margin="0"/>
+
+                            <ListBox x:Name="tagsList" 
+                                 RelativePanel.AlignLeftWithPanel="True" 
+                                 RelativePanel.AlignRightWithPanel="True" 
+                                 RelativePanel.AlignBottomWithPanel="True" 
+                                 RelativePanel.Below="textBlock" 
+                                 Tapped="tagsList_Tapped" 
+                                 Foreground="Black" 
+                                 FontStyle="Italic" 
+                                 FontWeight="Bold" 
+                                 Background="{x:Null}"/>
+
+                            <Button HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch" 
+                                Margin="0,0,0,0" 
+                                Background="#7FF91313" 
+                                Content="Close" 
+                                Foreground="#B2FFFFFF" 
+                                FontSize="13" 
+                                FontWeight="Bold" 
+                                BorderThickness="0" 
+                                RelativePanel.AlignLeftWithPanel="True" 
+                                RelativePanel.AlignBottomWithPanel="True" 
+                                Click="Close_Click" 
+                                Width="50" 
+                                Height="31"/>
+                        </RelativePanel>
+
+                    </SplitView.Pane>
+                </SplitView>
+
+            </RelativePanel>
+
+            <ScrollViewer x:Name="listPanel" 
+                      Opacity="0.5" 
+                      ViewChanged="scroll_ViewChanged" 
+                      HorizontalScrollMode="Enabled" 
+                      VerticalScrollMode="Disabled" 
+                      HorizontalScrollBarVisibility="Auto" 
+                      VerticalScrollBarVisibility="Disabled"
+                      Grid.Row="2">
+
+                <ListView x:Name="ctlList"
+                      IsItemClickEnabled="True"
+                      Height="70"
+                      SelectionMode="Single"
+                      BorderThickness="0"
+                      Margin="0"
+                      Padding="0">
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel x:Name="ctlListViewItem" Background="Transparent" 
+                                    Orientation="Horizontal" 
+                                    Tapped="ctlListViewItem_Tapped" 
+                                    RightTapped="ctlListViewItem_RightTapped" 
+                                    Holding="ctlListViewItem_Holding"
+                                    BorderThickness="0"
+                                    Margin="0"
+                                    Padding="0"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                </ListView>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</Page>
