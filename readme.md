@@ -10,7 +10,7 @@ Images are copyrighted by the original author and owned by Zerochan.net.／图�
 
 - 5/4/2017 `1.5.0.0` 版本更新：增加滑动、拖动等针对平板触摸设备的优化
 
-![](https://i.imgur.com/iPisT45.gif)
+![](/screenshots/iPisT45.gif)
 
 **[Zerochan Anime Searcher UWP](https://www.microsoft.com/en-us/store/p/zerochan-searcher/9msxs01t5lsl)** is a simple UWP app for viewing, searching and downloading HD Anime Picture from *[Zerochan.net](http://zerochan.net)* Websites. It support multiple download mode when you right click on the picture listview. We recommand you to use Zerochan Searcher in Desktop still.
 
@@ -27,7 +27,7 @@ Images are copyrighted by the original author and owned by Zerochan.net.／图�
 ---
 ### Selected Screenshots 
 
-![](https://i.imgur.com/YSeJeOF.gif)
+![](/screenshots/YSeJeOF.gif)
 
 #### Desktop ／桌面端
 ![](https://i.imgur.com/66LLofW.png)
