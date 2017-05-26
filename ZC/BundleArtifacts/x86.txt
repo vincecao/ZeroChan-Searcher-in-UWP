@@ -1,2 +1,0 @@
-MainPackage=C:\Users\qq234\Documents\Visual Studio 2017\Projects\ZC\ZC\bin\x86\Release\ZC_1.5.2.0_x86.appx
-SymbolPackage=C:\Users\qq234\Documents\Visual Studio 2017\Projects\ZC\ZC\AppPackages\ZC_1.5.2.0_Test\ZC_1.5.2.0_x86.appxsym

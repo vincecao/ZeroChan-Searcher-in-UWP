@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,15 +22,15 @@ using Windows.UI.Xaml.Navigation;
 
 namespace ZC
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class Zerochan_IndexPage : Page
     {
         private static ArrayList ZcPicList;
         private static int URLIndex;
         private int i = 1;
         private static String sort, quality;
+        private ObservableCollection<string> FavList = new ObservableCollection<string>(); //with id
+        Zerochan_Picture zc_pic;
 
         public Zerochan_IndexPage()
         {
@@ -47,6 +51,15 @@ namespace ZC
 
             }
 
+            string josnFileName = "myfavconfig";
+            
+            FavList = await new StarPage().LoadFromJsonAsync(josnFileName);
+            if (FavList == null)
+            {
+                FavList = new ObservableCollection<string>();
+                FavList.Add("ms-appx:///Assets/Fav_Tips.png");
+                saveJsonFile(FavList);
+            }
             showImage();
 
         }
@@ -90,7 +103,7 @@ namespace ZC
 
         private void loadImageFromZcPicList(int index)
         {
-            Zerochan_Picture zc_pic = (Zerochan_Picture)ZcPicList[index];
+            zc_pic = (Zerochan_Picture)ZcPicList[index];
             SmallDisplayImage.Source = zc_pic.getImage(1);
             MiddleDisplayImage.Source = zc_pic.getImage(2);
             LargeDisplayImage.Source = zc_pic.getImage(3);
@@ -215,7 +228,7 @@ namespace ZC
             if (ctlList.SelectionMode == ListViewSelectionMode.Single)
             {
                 URLIndex = ctlList.Items.IndexOf(ctlList.SelectedItem);
-                Zerochan_Picture zc_pic = (Zerochan_Picture)ZcPicList[URLIndex];
+                zc_pic = (Zerochan_Picture)ZcPicList[URLIndex];
 
                 try
                 {
@@ -236,20 +249,20 @@ namespace ZC
                 for (int i = 0; i < ctlList.SelectedItems.Count; i++)
                 {
                     URLIndex = ctlList.Items.IndexOf(ctlList.SelectedItems[i]);
-                    Zerochan_Picture zc_pic = (Zerochan_Picture)ZcPicList[URLIndex];
+                    zc_pic = (Zerochan_Picture)ZcPicList[URLIndex];
 
                     try
                     {
 
                         await SaveImage(zc_pic._largeImageUrl);
                         System.Diagnostics.Debug.WriteLine("Output Success");
-                        DownloadBtn.Content = "Okay~ " + i;
+                        DownloadBtn.Content = "No." + (i + 1) + "Okay~ ";
                     }
                     catch (Exception)
                     {
                         System.Diagnostics.Debug.WriteLine("Error");
                         System.Diagnostics.Debug.WriteLine(zc_pic._largeImageUrl);
-                        DownloadBtn.Content = "Output Error!";
+                        DownloadBtn.Content = "No." + (i + 1) + "Output Error!";
                     }
                 }
             }
@@ -455,7 +468,7 @@ namespace ZC
             {
                 URLIndex = ctlList.Items.IndexOf(ctlList.SelectedItem);
 
-                Zerochan_Picture zc_pic = (Zerochan_Picture)ZcPicList[URLIndex];
+                zc_pic = (Zerochan_Picture)ZcPicList[URLIndex];
                 ArrayList tagsArr = await zc_pic.getTags();
                 var id = zc_pic.getId();
 
@@ -471,7 +484,7 @@ namespace ZC
             {
                 try
                 {
-                    Zerochan_Picture zc_pic = (Zerochan_Picture)ZcPicList[0];
+                    zc_pic = (Zerochan_Picture)ZcPicList[0];
                     ArrayList tagsArr = await zc_pic.getTags();
                     var id = zc_pic.getId();
 
@@ -585,6 +598,54 @@ namespace ZC
             }
         }
 
+        private void FavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //var temp_id = zc_pic._id.ToString();
+            var temp_imageUrl = zc_pic._largeImageUrl.ToString();
+
+            var flag = true;
+
+            try
+            {
+                for (int i = 0; i < FavList.Count; i++)
+                {
+                    if (temp_imageUrl == FavList[i])
+                    {
+                        flag = false;
+                        //pop out the tips
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            
+            if (flag == true)
+            {
+                FavList.Add(temp_imageUrl);
+            }
+            saveJsonFile(FavList);
+
+        }
+
+        //save Json
+        public async void saveJsonFile(ObservableCollection<string> FavList)
+        {
+            StringBuilder json = new StringBuilder(JsonConvert.SerializeObject(FavList));
+            var FileName = "myfavconfig";
+            await SaveJsonToFileAsync(FileName, json);
+
+        }
+
+        private async Task SaveJsonToFileAsync(string FileName, StringBuilder json)
+        {
+            StorageFolder storageFolder = await ApplicationData.Current.RoamingFolder.CreateFolderAsync("Fav", CreationCollisionOption.OpenIfExists);
+            //StorageFolder storageFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("Fav", CreationCollisionOption.OpenIfExists);
+            var file = await storageFolder.CreateFileAsync(FileName + ".json", CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, json.ToString()); //out put as json
+        }
+
         private void nextBtn_Click(object sender, RoutedEventArgs e)
         {
             var b = ctlList.Items.IndexOf(ctlList.SelectedItem) + 1;
@@ -614,5 +675,7 @@ namespace ZC
 
             }
         }
+
+
     }
 }

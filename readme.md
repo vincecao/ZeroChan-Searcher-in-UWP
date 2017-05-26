@@ -4,6 +4,12 @@
 
 Images are copyrighted by the original author and owned by Zerochan.net.／图片的版权归原作者和 Zerochan.net 所有。
 
+- 5/27/2017 `2.0.0.0` 版本更新：加入“最爱”书签功能
+
+![](https://i.imgur.com/0qn6m4e.jpg)
+
+![](https://i.imgur.com/e84cST6.jpg)
+
 - 5/10/2017 `1.5.2.0` 版本更新：日常小更新，优化界面，解决一个小bug
 
 ![](https://i.imgur.com/DGpFDEi.jpg)

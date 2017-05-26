@@ -59,7 +59,21 @@ namespace ZC
 
         private void IconsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (StarListBoxItem.IsSelected)
+            {
+                myFrame.Navigate(typeof(StarPage));
+                headerTitle.Text = "Favorite(beta)";
+            }
+            else if(IndexListBoxItem.IsSelected)
+            {
+                myFrame.Navigate(typeof(Zerochan_IndexPage));
+                headerTitle.Text = "ZeroChan";
+            }
+            else
+            {
+                myFrame.Navigate(typeof(Zerochan_IndexPage));
+                headerTitle.Text = "ZeroChan";
+            }
         }
     }
 }

@@ -80,7 +80,7 @@
                                  Background="{ThemeResource SystemControlHighlightAccentBrush}"
                                  Foreground="White">
 
-                            <ListBoxItem>
+                            <ListBoxItem Name="IndexListBoxItem">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontFamily="Segoe MDL2 Assets" 
                                        Text="&#xE128;" 
@@ -95,7 +95,7 @@
                                 </StackPanel>
                             </ListBoxItem>
 
-                            <ListBoxItem Name="FavorListBoxItem" Visibility="Collapsed">
+                            <ListBoxItem Name="StarListBoxItem">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontFamily="Segoe MDL2 Assets" 
                                        Text="&#xE208;" 

@@ -8,12 +8,12 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace ZC
 {
-    class Zerochan_Picture
+    public class Zerochan_Picture
     {
-        private string _id { get; set; }
+        public string _id { get; set; }
         private string _url;
-        private string _smallImageUrl;
-        private string _middleImageUrl;
+        public string _smallImageUrl;
+        public string _middleImageUrl;
         public string _largeImageUrl;
         private BitmapImage _smallImage;
         private BitmapImage _middleImage;

@@ -19,6 +19,7 @@
                   HorizontalAlignment="Center"
                   ManipulationMode="System,TranslateX"
                   ManipulationDelta="Img_ManipulationDelta">
+                
                 <Image x:Name="SmallDisplayImage" 
                        Tapped="DisplayImage_Tapped"/>
                 <Image x:Name="MiddleDisplayImage" 
@@ -58,8 +59,6 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
-
 
             <Grid x:Name="TopBarPanel" 
               Opacity="0.6"
@@ -164,6 +163,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
@@ -232,6 +232,22 @@
                                 FontSize="13" 
                                 FontWeight="Bold" 
                                 Click="InfoSwitch_Click" 
+                                BorderThickness="0" 
+                                RelativePanel.AlignLeftWithPanel="True" 
+                                Width="50" 
+                                Height="31"/>
+
+                    <Button x:Name="FavBtn" 
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                HorizontalAlignment="Right" 
+                                VerticalAlignment="Bottom" 
+                                Background="yellow" 
+                                Content="Star" 
+                                Foreground="black" 
+                                FontSize="13" 
+                                FontWeight="Bold" 
+                                Click="FavBtn_Click" 
                                 BorderThickness="0" 
                                 RelativePanel.AlignLeftWithPanel="True" 
                                 Width="50" 

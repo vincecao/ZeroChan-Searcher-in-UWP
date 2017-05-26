@@ -86,7 +86,7 @@ namespace ZC
         {
             var index = IndexOf(input, startStr, 0, false) + startStr.Length;
             var end = IndexOf(input, endStr, 0, false);
-            var length = end - index + 1;
+            var length = end - index;
 
             return SubString(input, index, length);
         }

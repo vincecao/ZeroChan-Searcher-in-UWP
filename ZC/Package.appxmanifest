@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="64396redhave3studio.ZerochanSearcher" Publisher="CN=C02E128D-B3F4-4097-8ED5-9811C8A40790" Version="1.5.2.0" />
+  <Identity Name="64396redhave3studio.ZerochanSearcher" Publisher="CN=C02E128D-B3F4-4097-8ED5-9811C8A40790" Version="2.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="d94f3473-ba32-467f-bb95-e4b1d7e45b60" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Zerochan Searcher</DisplayName>
